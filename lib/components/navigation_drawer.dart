@@ -1,69 +1,130 @@
 import 'package:flutter/material.dart';
 import 'drawer_item.dart';
 
-
 class NavigationDrawer extends StatelessWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
+  const NavigationDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Material(
-        color: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(24.0, 80, 24, 0),
-          child: Column(
-            children: [
-              headerWidget(),
-              const SizedBox(height: 40,),
-              const Divider(thickness: 1, height: 10, color: Colors.grey,),
-              const SizedBox(height: 40,),
-              DrawerItem(
-                name: 'People',
-                icon: Icons.people,
-                onPressed: ()=> onItemPressed(context, index: 0),
-              ),
-              const SizedBox(height: 30,),
-              DrawerItem(
-                  name: 'My Account',
-                  icon: Icons.account_box_rounded,
-                  onPressed: ()=> onItemPressed(context, index: 1)
-              ),
-              const SizedBox(height: 30,),
-              DrawerItem(
-                  name: 'Chats',
-                  icon: Icons.message_outlined,
-                  onPressed: ()=> onItemPressed(context, index: 2)
-              ),
-              const SizedBox(height: 30,),
-              DrawerItem(
-                  name: 'Favourites',
-                  icon: Icons.favorite_outline,
-                  onPressed: ()=> onItemPressed(context, index: 3)
-              ),
-              const SizedBox(height: 30,),
-              const Divider(thickness: 1, height: 10, color: Colors.grey,),
-              const SizedBox(height: 30,),
-              DrawerItem(
-                  name: 'Setting',
-                  icon: Icons.settings,
-                  onPressed: ()=> onItemPressed(context, index: 4)
-              ),
-              const SizedBox(height: 30,),
-              DrawerItem(
-                  name: 'Log out',
-                  icon: Icons.logout,
-                  onPressed: ()=> onItemPressed(context, index: 5)
-              ),
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
-            ],
+    return Drawer(
+      width: width * 0.7,
+      shadowColor: const Color(0xFF65647C),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+      ),
+      elevation: 2,
+      child: Scaffold(
+        // color: Colors.black,
+        bottomSheet: Container(
+          height: height * 0.2,
+          decoration: const BoxDecoration(
+            
+            image: DecorationImage(
+              alignment: Alignment.center,
+              opacity: 5,
+
+              image: AssetImage('assets/images/shola_printable_ad.png'),
+              fit: BoxFit.fill,
+            ),
+
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(26),
+              topLeft: Radius.circular(26),
+              
+            ),
+          ),
+          
+        ),
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF1D6EA0),
+                Color.fromARGB(255, 107, 166, 202),
+              ],
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(24.0, 20, 14, 0),
+            child: Column(
+              children: [
+                headerWidget(),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Divider(
+                  thickness: 1,
+                  height: 10,
+                  color: Colors.grey,
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                DrawerItem(
+                  name: 'አካውንት',
+                  icon: Icons.people,
+                  onPressed: () => onItemPressed(context, index: 0),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                DrawerItem(
+                    name: 'የእቃ ማዘዣ',
+                    icon: Icons.account_box_rounded,
+                    onPressed: () => onItemPressed(context, index: 1)),
+                const SizedBox(
+                  height: 30,
+                ),
+                DrawerItem(
+                    name: 'ያላለቁ ምዝገባዎች',
+                    icon: Icons.message_outlined,
+                    onPressed: () => onItemPressed(context, index: 2)),
+                const SizedBox(
+                  height: 30,
+                ),
+                DrawerItem(
+                    name: 'የሾላ ምርቶች',
+                    icon: Icons.favorite_outline,
+                    onPressed: () => onItemPressed(context, index: 3)),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Divider(
+                  thickness: 1,
+                  height: 10,
+                  color: Colors.grey,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                DrawerItem(
+                    name: 'ማስተካያ',
+                    icon: Icons.settings,
+                    onPressed: () => onItemPressed(context, index: 4)),
+                const SizedBox(
+                  height: 30,
+                ),
+                DrawerItem(
+                    name: 'መውጫ',
+                    icon: Icons.logout,
+                    onPressed: () => onItemPressed(context, index: 5)),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  void onItemPressed(BuildContext context, {required int index}){
+  void onItemPressed(BuildContext context, {required int index}) {
     Navigator.pop(context);
 
     // switch(index){
@@ -74,26 +135,31 @@ class NavigationDrawer extends StatelessWidget {
   }
 
   Widget headerWidget() {
-    const url = 'https://media.istockphoto.com/photos/learn-to-love-yourself-first-picture-id1291208214?b=1&k=20&m=1291208214&s=170667a&w=0&h=sAq9SonSuefj3d4WKy4KzJvUiLERXge9VgZO-oqKUOo=';
-    return Row(
-      children: [
-        const CircleAvatar(
-          radius: 40,
-          backgroundImage: NetworkImage(url),
-        ),
-        const SizedBox(width: 20,),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text('Person name', style: TextStyle(fontSize: 14, color: Colors.white)),
-            SizedBox(height: 10,),
-            Text('person@email.com', style: TextStyle(fontSize: 14, color: Colors.white))
-          ],
-        )
-      ],
+    return Container(
+      child:  const Row(
+        children: [
+          CircleAvatar(
+            radius: 40,
+            backgroundImage:
+                AssetImage('assets/images/logo_with_white_text.png'),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('የተጠቃሚ ስም',
+                  style: TextStyle(fontSize: 14, color: Colors.white)),
+              SizedBox(
+                height: 10,
+              ),
+              Text('ኢሚዬል@email.com',
+                  style: TextStyle(fontSize: 14, color: Colors.white))
+            ],
+          )
+        ],
+      ),
     );
-
   }
 }
-
-
