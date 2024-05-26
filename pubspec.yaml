@@ -35,25 +35,26 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
-  shared_preferences: ^2.2.2
-  hive: ^2.2.3
-  http: ^0.13.6
-  image_picker: ^1.0.4
-  dio: ^5.4.0
-  flutter_spinkit: ^5.1.0
-  flutter_dotenv: ^5.0.2
-  pie_chart: ^5.3.2
-  file_picker: ^5.3.1
-  async_foreach: ^0.0.5+4
-  curved_navigation_bar: ^1.0.3
-  connectivity_plus: ^5.0.2
-  connectivity: ^3.0.6
-  provider: ^5.0.0
-  get: ^4.6.5
-  internet_connection_checker: ^1.0.0+1
-  carousel_slider: ^4.2.1
-  intl: ^0.17.0
-  flutter_pdfview: ^1.2.1
+  #  shared_preferences: ^2.2.2
+  # hive: ^2.2.3
+  # http: ^0.13.6
+  # image_picker: ^1.0.4
+  # dio: ^5.4.0
+  # flutter_spinkit: ^5.1.0
+  # flutter_dotenv: ^5.0.2
+  # pie_chart: ^5.3.2
+  # file_picker: ^5.3.1
+  # async_foreach: ^0.0.5+4
+  # curved_navigation_bar: ^1.0.3
+  # connectivity_plus: ^5.0.2
+  # connectivity: ^3.0.6
+  # provider: ^5.0.0
+  # get: ^4.6.5
+  # internet_connection_checker: ^1.0.0+1
+  # carousel_slider: ^4.2.1
+  # intl: ^0.17.0
+  # flutter_pdfview: ^1.2.1
+  
   
 
 
@@ -92,6 +93,15 @@ flutter:
     - assets/images/white_transparent_shola_entrance.png
     - assets/images/small_background.png
     - assets/images/background_small.png
+    - assets/images/yoghurt_prodcuts_icon.png
+    - assets/images/milk_icon.png
+    - assets/images/highland_milk_icon.png
+    - assets/images/shola_cow_icon.png
+    - assets/images/shola_cow_no_bg.png
+    - assets/images/shola_printable_ad.png
+
+
+    
 
   
   
