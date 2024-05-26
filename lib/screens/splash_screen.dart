@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
-import 'dart:math' as math;
+
 import 'package:get/get.dart';
+import 'home_page.dart';
 
 class SplashScreenWidget extends StatefulWidget {
   const SplashScreenWidget({super.key});
@@ -36,7 +36,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
       );
     });
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       setState(() {
         showText = true;
         _controller.forward();
