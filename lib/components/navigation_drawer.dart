@@ -24,13 +24,14 @@ class NavigationDrawer extends StatelessWidget {
         bottomSheet: Container(
           height: height * 0.2,
           decoration: const BoxDecoration(
-            
+            color:  Color.fromARGB(179, 107, 166, 202),
             image: DecorationImage(
               alignment: Alignment.center,
-              opacity: 5,
+              
+              // opacity: 5,
 
-              image: AssetImage('assets/images/shola_printable_ad.png'),
-              fit: BoxFit.fill,
+              image: AssetImage('assets/images/shola_motto_image.png'),
+              fit: BoxFit.contain,
             ),
 
             borderRadius: BorderRadius.only(

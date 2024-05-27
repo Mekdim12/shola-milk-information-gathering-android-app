@@ -44,6 +44,14 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
     });
 
     Future.delayed(const Duration(seconds: 6), () {
+      
+      
+// Navigator.push(
+//                                 context,
+//                                 MaterialPageRoute(
+//                                     builder: (context) => HomePageWidget()),
+//                               );
+
       Get.off(
         const HomePageWidget(),
         transition: Transition.circularReveal,

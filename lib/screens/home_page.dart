@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import '../components/navigation_drawer.dart' as drawer;
+import 'stock_information_filling_page.dart';
+import 'package:get/get.dart';
+import 'registeration_items_list.dart';
+import 'package:flutter/services.dart';
+import '../models/data.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
@@ -9,10 +14,30 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePageWidget> {
+  late Future<List<PurchasedItems>> itemsFuture;
+  int tottalRecordedItem = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      tottalRecordedItem = 0; 
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    //  read the data from the json file and check the length of the data and display it
+    itemsFuture = PurchasedItems.readData();
+    itemsFuture.then((value) {
+      tottalRecordedItem = value.length;
+      setState(() {
+        tottalRecordedItem = value.length;
+      });
+    });
+   
 
     return Scaffold(
         drawer: const drawer.NavigationDrawer(),
@@ -72,7 +97,30 @@ class _HomePageState extends State<HomePageWidget> {
                               ),
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            child: const Text("data"),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "የተመዘገቡ እቃዎች ብዛት",
+                                    style: TextStyle(
+                                        color: Color(0xFF1D6EA0),
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "$tottalRecordedItem",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 35,
+                                        color: Colors.black),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                         Card(
@@ -91,20 +139,49 @@ class _HomePageState extends State<HomePageWidget> {
                               ),
                               borderRadius: BorderRadius.circular(15),
                             ),
+                            child: const Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "ያሉን ምርቶች ብዛት",
+                                    style: TextStyle(
+                                        color: Color(0xFF1D6EA0),
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "5",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 35,
+                                        color: Colors.black),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 30,
                   ),
                   SingleChildScrollView(
                     child: Column(
                       children: [
                         GestureDetector(
                           onTap: () {
-                            print("<");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      StockInformationCollector()),
+                            );
                           },
                           child: Container(
                             decoration: const BoxDecoration(
@@ -153,7 +230,11 @@ class _HomePageState extends State<HomePageWidget> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            print("<");
+                            Get.to(
+                              const StockInformationPurchasedList(),
+                              transition: Transition.circularReveal,
+                              duration: const Duration(milliseconds: 1000),
+                            );
                           },
                           child: Container(
                             decoration: const BoxDecoration(
@@ -179,7 +260,7 @@ class _HomePageState extends State<HomePageWidget> {
                                       ),
                                       Center(
                                         child: Text(
-                                          "ዘርዝር",
+                                          "ዝርዝር",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 15,
@@ -198,62 +279,15 @@ class _HomePageState extends State<HomePageWidget> {
                             ),
                           ),
                         ),
+
                         const SizedBox(
                           height: 15,
                         ),
                         GestureDetector(
                           onTap: () {
-                            print("<");
-                          },
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(26)),
-                            ),
-                            height: height * 0.1,
-                            margin:
-                                EdgeInsets.symmetric(horizontal: width * 0.1),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: (width * 0.60),
-                                  child: const Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 50,
-                                        child: Icon(
-                                          Icons.campaign_rounded,
-                                          color: Color(0xFF124521),
-                                        ),
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          "ሰለ ሾላ ምርቶች",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 15,
-                                              color: Color(0xFF1D6EA0)),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                    width: width * 0.17,
-                                    height: 50,
-                                    child: Image.asset(
-                                        'assets/images/highland_milk_icon.png'))
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            print("<");
+                            // exit the app
+
+                            SystemNavigator.pop();
                           },
                           child: Container(
                             decoration: const BoxDecoration(
